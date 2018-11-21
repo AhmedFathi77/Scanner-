@@ -9,12 +9,10 @@
   "author": "codedamn",
   "license": "ISC",
   "dependencies": {
+    "electron-packager": "^12.2.0",
     "electron-screenshot": "^1.0.4",
     "electron-squirrel-startup": "^1.0.0",
     "electron-winstaller": "^2.7.0",
     "image-size": "^0.5.4"
-  },
-  "devDependencies": {
-    "electron-packager": "^12.2.0"
   }
 }

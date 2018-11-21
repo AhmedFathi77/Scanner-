@@ -119,8 +119,7 @@ var CategorizedLine = [],
 
 
 submitButton.addEventListener('click',function(){
-    Code = Textarea1.value;
-    console.log(Code);
+    Code = Textarea1.value + "\t DummyVal";
 
     var obj = new Parser(Code);
     var Commnents = obj.isComment();
@@ -128,7 +127,7 @@ submitButton.addEventListener('click',function(){
     var FinalSrting = obj.SemiColunHandler(); //This is the final string
     var CodeAsArray = obj.clearString();
     var IterationComment = 0;
-
+console.log(CodeAsArray);
     for(var i =0 ; i<CodeAsArray.length ; i++){
       CategorizedLine.push([]);
       CategorizedLine[i].push(new Array(2));
@@ -137,17 +136,17 @@ submitButton.addEventListener('click',function(){
         CategorizedLine[i][1] = "Reserved Words";
         //console.log(CategorizedLine[i][0] + CategorizedLine[i][1]);
       }
-      else if(isSpecialSymoles(CodeAsArray[i])){
+      if(isSpecialSymoles(CodeAsArray[i])){
         CategorizedLine[i][0] = CodeAsArray[i];
         CategorizedLine[i][1] = "Special Symbols";
         //console.log(CategorizedLine[i][0] + CategorizedLine[i][1]);
       }
-      else if(isSemoColumn(CodeAsArray[i])){
+      if(isSemoColumn(CodeAsArray[i])){
         CategorizedLine[i][0] = CodeAsArray[i];
         CategorizedLine[i][1] = "Special Symbols";
         //console.log(CategorizedLine[i][0] + CategorizedLine[i][1]);
       }
-      else if(isIdentifier(CodeAsArray[i])){
+      if(isIdentifier(CodeAsArray[i])){
         CategorizedLine[i][0] = CodeAsArray[i];
         CategorizedLine[i][1] = "Identifier";
         //console.log(CategorizedLine[i][0] + CategorizedLine[i][1]);
@@ -169,18 +168,23 @@ submitButton.addEventListener('click',function(){
         insertVal  = document.getElementById("insertVal"),
         inserttyp  = document.getElementById("inserttyp");
      for(var i = 0; i<CategorizedLine.length ; i++){
-         var newtokenvalue    = document.createElement("a");
+       if(CategorizedLine[i][0] != undefined && CategorizedLine[i][1] != undefined){
+          var newtokenvalue    = document.createElement("a");
              newtokenvalue.classList.add("list-group-item" , "list-group-item-action" , "Val");
-         var newtokentype     = document.createElement("a");
+          var newtokentype     = document.createElement("a");
              newtokentype.classList.add("list-group-item" , "list-group-item-action" , "Val");
 
              // newtokenvalue.style.color = "#EEEEEE";
              // newtokentype.style.color = "#EEEEEE";
-         newtokenvalue.innerText = CategorizedLine[i][0];
-         newtokentype.innerText  = CategorizedLine[i][1];
-         insertVal.append(newtokenvalue);
-         inserttyp.append(newtokentype);
+           newtokenvalue.innerText = CategorizedLine[i][0];
+           newtokentype.innerText  = CategorizedLine[i][1];
+           insertVal.append(newtokenvalue);
+           inserttyp.append(newtokentype);
+       }
     }
+
+    Code = " ";
+    CodeAsArray = null;
 
 })
 
